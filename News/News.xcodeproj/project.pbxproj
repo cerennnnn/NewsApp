@@ -42,6 +42,15 @@
 		33FC59D02AB7A6AB0008CEB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33FC59CF2AB7A6AB0008CEB2 /* GoogleService-Info.plist */; };
 		33FC59D32AB7A7D80008CEB2 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 33FC59D22AB7A7D80008CEB2 /* IQKeyboardManagerSwift */; };
 		33FC59D62AB7A7FA0008CEB2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 33FC59D52AB7A7FA0008CEB2 /* SDWebImage */; };
+		33FC59D92AB7AA130008CEB2 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 33FC59D82AB7AA130008CEB2 /* SideMenu */; };
+		33FC59DC2AB7ABE50008CEB2 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC59DB2AB7ABE50008CEB2 /* HomeCollectionViewCell.swift */; };
+		33FC59DF2AB7AC650008CEB2 /* MenuListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC59DE2AB7AC650008CEB2 /* MenuListController.swift */; };
+		33FC59E12AB7AD6D0008CEB2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC59E02AB7AD6D0008CEB2 /* HomeViewModel.swift */; };
+		33FC59E42AB7ADC30008CEB2 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC59E32AB7ADC30008CEB2 /* NewsModel.swift */; };
+		33FC59E72AB7ADEA0008CEB2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC59E62AB7ADEA0008CEB2 /* NetworkManager.swift */; };
+		33FC59EA2AB7B6D60008CEB2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC59E92AB7B6D60008CEB2 /* DetailViewController.swift */; };
+		33FC59EC2AB7B7B60008CEB2 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC59EB2AB7B7B60008CEB2 /* DetailViewModel.swift */; };
+		33FC59EF2AB7BC0F0008CEB2 /* DetailLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC59EE2AB7BC0F0008CEB2 /* DetailLinkViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +86,14 @@
 		33FC59C62AB7A3370008CEB2 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		33FC59C82AB7A3530008CEB2 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		33FC59CF2AB7A6AB0008CEB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		33FC59DB2AB7ABE50008CEB2 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		33FC59DE2AB7AC650008CEB2 /* MenuListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListController.swift; sourceTree = "<group>"; };
+		33FC59E02AB7AD6D0008CEB2 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		33FC59E32AB7ADC30008CEB2 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
+		33FC59E62AB7ADEA0008CEB2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		33FC59E92AB7B6D60008CEB2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		33FC59EB2AB7B7B60008CEB2 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		33FC59EE2AB7BC0F0008CEB2 /* DetailLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLinkViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +105,7 @@
 				33FC59D32AB7A7D80008CEB2 /* IQKeyboardManagerSwift in Frameworks */,
 				33FC59CC2AB7A3CE0008CEB2 /* FirebaseAuth in Frameworks */,
 				33FC59CE2AB7A3CE0008CEB2 /* FirebaseFirestore in Frameworks */,
+				33FC59D92AB7AA130008CEB2 /* SideMenu in Frameworks */,
 				33FC59D62AB7A7FA0008CEB2 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,11 +132,15 @@
 		33FC59732AB7999F0008CEB2 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				33FC59E52AB7ADDD0008CEB2 /* Network Layer */,
+				33FC59E22AB7ADB20008CEB2 /* Model */,
 				33FC599B2AB79E0A0008CEB2 /* Onboarding Page */,
 				33FC59BF2AB7A2BB0008CEB2 /* Sign Up Page */,
 				33FC59A32AB79EF50008CEB2 /* Login Page */,
 				33FC59982AB79DCB0008CEB2 /* TabBar */,
+				33FC59DD2AB7AC4D0008CEB2 /* Menu List  */,
 				33FC598A2AB79A6D0008CEB2 /* Home Page */,
+				33FC59E82AB7B6C50008CEB2 /* Detail Page */,
 				33FC598F2AB79C2F0008CEB2 /* Search Page */,
 				33FC59922AB79C430008CEB2 /* Saved Page */,
 				33FC59952AB79C4F0008CEB2 /* Profile Page */,
@@ -153,6 +175,7 @@
 		33FC598A2AB79A6D0008CEB2 /* Home Page */ = {
 			isa = PBXGroup;
 			children = (
+				33FC59DA2AB7ABCB0008CEB2 /* _components */,
 				33FC598B2AB79A820008CEB2 /* HomeViewController.swift */,
 				33FC598D2AB79A990008CEB2 /* HomeViewController.storyboard */,
 			);
@@ -253,6 +276,57 @@
 			path = "Sign Up Page";
 			sourceTree = "<group>";
 		};
+		33FC59DA2AB7ABCB0008CEB2 /* _components */ = {
+			isa = PBXGroup;
+			children = (
+				33FC59DB2AB7ABE50008CEB2 /* HomeCollectionViewCell.swift */,
+				33FC59E02AB7AD6D0008CEB2 /* HomeViewModel.swift */,
+			);
+			path = _components;
+			sourceTree = "<group>";
+		};
+		33FC59DD2AB7AC4D0008CEB2 /* Menu List  */ = {
+			isa = PBXGroup;
+			children = (
+				33FC59DE2AB7AC650008CEB2 /* MenuListController.swift */,
+			);
+			path = "Menu List ";
+			sourceTree = "<group>";
+		};
+		33FC59E22AB7ADB20008CEB2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				33FC59E32AB7ADC30008CEB2 /* NewsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		33FC59E52AB7ADDD0008CEB2 /* Network Layer */ = {
+			isa = PBXGroup;
+			children = (
+				33FC59E62AB7ADEA0008CEB2 /* NetworkManager.swift */,
+			);
+			path = "Network Layer";
+			sourceTree = "<group>";
+		};
+		33FC59E82AB7B6C50008CEB2 /* Detail Page */ = {
+			isa = PBXGroup;
+			children = (
+				33FC59ED2AB7BC000008CEB2 /* _components */,
+				33FC59E92AB7B6D60008CEB2 /* DetailViewController.swift */,
+				33FC59EB2AB7B7B60008CEB2 /* DetailViewModel.swift */,
+			);
+			path = "Detail Page";
+			sourceTree = "<group>";
+		};
+		33FC59ED2AB7BC000008CEB2 /* _components */ = {
+			isa = PBXGroup;
+			children = (
+				33FC59EE2AB7BC0F0008CEB2 /* DetailLinkViewController.swift */,
+			);
+			path = _components;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -275,6 +349,7 @@
 				33FC59CD2AB7A3CE0008CEB2 /* FirebaseFirestore */,
 				33FC59D22AB7A7D80008CEB2 /* IQKeyboardManagerSwift */,
 				33FC59D52AB7A7FA0008CEB2 /* SDWebImage */,
+				33FC59D82AB7AA130008CEB2 /* SideMenu */,
 			);
 			productName = News;
 			productReference = 33FC59712AB7999F0008CEB2 /* News.app */;
@@ -309,6 +384,7 @@
 				33FC59CA2AB7A3CE0008CEB2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				33FC59D12AB7A7D80008CEB2 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				33FC59D42AB7A7FA0008CEB2 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				33FC59D72AB7AA130008CEB2 /* XCRemoteSwiftPackageReference "SideMenu" */,
 			);
 			productRefGroup = 33FC59722AB7999F0008CEB2 /* Products */;
 			projectDirPath = "";
@@ -348,21 +424,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33FC59E12AB7AD6D0008CEB2 /* HomeViewModel.swift in Sources */,
+				33FC59EF2AB7BC0F0008CEB2 /* DetailLinkViewController.swift in Sources */,
 				33FC59A52AB79EFD0008CEB2 /* LoginViewController.swift in Sources */,
 				33FC59C72AB7A3370008CEB2 /* UIImageView+.swift in Sources */,
+				33FC59E72AB7ADEA0008CEB2 /* NetworkManager.swift in Sources */,
 				33FC59C52AB7A3230008CEB2 /* AuthErrorCode+.swift in Sources */,
+				33FC59E42AB7ADC30008CEB2 /* NewsModel.swift in Sources */,
 				33FC59972AB79C5C0008CEB2 /* ProfileViewController.swift in Sources */,
 				33FC59AA2AB79F5D0008CEB2 /* UserDefaults+.swift in Sources */,
 				33FC59752AB7999F0008CEB2 /* AppDelegate.swift in Sources */,
 				33FC59772AB7999F0008CEB2 /* SceneDelegate.swift in Sources */,
 				33FC599D2AB79E180008CEB2 /* OnboardingViewController.swift in Sources */,
+				33FC59EC2AB7B7B60008CEB2 /* DetailViewModel.swift in Sources */,
+				33FC59EA2AB7B6D60008CEB2 /* DetailViewController.swift in Sources */,
 				33FC59912AB79C3F0008CEB2 /* SearchViewController.swift in Sources */,
 				33FC599A2AB79DD60008CEB2 /* TabBarController.swift in Sources */,
+				33FC59DC2AB7ABE50008CEB2 /* HomeCollectionViewCell.swift in Sources */,
 				33FC59C92AB7A3530008CEB2 /* UIViewController+.swift in Sources */,
 				33FC59942AB79C4B0008CEB2 /* SavedViewController.swift in Sources */,
 				33FC598C2AB79A820008CEB2 /* HomeViewController.swift in Sources */,
 				33FC59AD2AB79FAA0008CEB2 /* OnboardingCollectionViewCell.swift in Sources */,
 				33FC59C12AB7A2CB0008CEB2 /* SignUpViewController.swift in Sources */,
+				33FC59DF2AB7AC650008CEB2 /* MenuListController.swift in Sources */,
 				33FC59BE2AB7A1FF0008CEB2 /* UITextField+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -603,6 +687,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		33FC59D72AB7AA130008CEB2 /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -630,6 +722,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 33FC59D42AB7A7FA0008CEB2 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		33FC59D82AB7AA130008CEB2 /* SideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 33FC59D72AB7AA130008CEB2 /* XCRemoteSwiftPackageReference "SideMenu" */;
+			productName = SideMenu;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -17,21 +17,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-//        var storyboard = UIStoryboard(name: "HomeViewController", bundle: nil)
+        var storyboard: UIStoryboard!
+        
+        if UserDefaults.standard.hasOnboarded {
+            storyboard = UIStoryboard(name: "HomeViewController", bundle: nil)
             
-//        if let vc = storyboard.instantiateViewController(withIdentifier: String(describing: TabBarController.self)) as? TabBarController {
-//            window.rootViewController = vc
-//            window.makeKeyAndVisible()
-//            self.window = window
-//        }
-        
-        //OnboardingViewController
-        
-        var storyboard = UIStoryboard(name: "OnboardingViewController", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: String(describing: OnboardingViewController.self)) as? OnboardingViewController {
-            window.rootViewController = vc
+            guard let tabBar = storyboard.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController else { return }
+            window.rootViewController = tabBar
             window.makeKeyAndVisible()
             self.window = window
+        }
+        else {
+            storyboard = UIStoryboard(name: "OnboardingViewController", bundle: nil)
+            if let vc = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController" ) as? OnboardingViewController {
+                window.rootViewController = vc
+                window.makeKeyAndVisible()
+                
+                self.window = window
+            }
         }
     }
 

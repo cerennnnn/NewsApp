@@ -5,13 +5,131 @@
 //  Created by Ceren Güneş on 17.09.2023.
 //
 
+import SDWebImage
+import SideMenu
 import UIKit
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var homeCollectionView: UICollectionView!
+    
+    private var menu: SideMenuNavigationController?
+    var homeViewModel = HomeViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Home"
+        setupCollectionView()
+        setupSideMenu()
+        
+        homeViewModel.loadNews()
+        homeViewModel.onSuccess = reloadCollectionView()
+        homeViewModel.onError = showError()
+        
     }
+    
+    func reloadCollectionView() -> () -> () {
+        return {
+            DispatchQueue.main.async {
+                self.homeCollectionView.reloadData()
+            }
+        }
+    }
+    
+    func showError() -> (_ errorStr: String) -> () {
+        return { errorStr in
+            DispatchQueue.main.async {
+                self.showError(errorStr)
+            }
+        }
+    }
+    
+    private func setupCollectionView() {
+        homeCollectionView.delegate = self
+        homeCollectionView.dataSource = self
+    }
+    
+    private func setupSideMenu() {
+        menu = SideMenuNavigationController(rootViewController: MenuListController())
+        menu?.leftSide = true
+        menu?.setNavigationBarHidden(true, animated: true)
+        
+        SideMenuManager.default.leftMenuNavigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: true)
+        SideMenuManager.default.leftMenuNavigationController = menu
+        SideMenuManager.default.addPanGestureToPresent(toView: self.view)
+    }
+    
+    @IBAction func SideMenuButtonTapped(_ sender: Any) {
+        if let menu {
+            present(menu, animated: true)
+        }
+    }
+}
+
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return homeViewModel.numberOfItems(in: section)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as? HomeCollectionViewCell {
+            
+            let selectedItem = homeViewModel.cellForItem(at: indexPath)
+            
+            if let selectedImage = selectedItem.urlToImage {
+                cell.homeTitleLabel.text = selectedItem.title
+                cell.homeDescriptionLabel.text = selectedItem.description
+                cell.homeImageView.sd_setImage(with: URL(string: selectedImage), placeholderImage: UIImage(named: "person.fill"))
+                
+                cell.layer.masksToBounds = false
+                cell.layer.shadowColor = UIColor.black.cgColor
+                cell.layer.shadowOpacity = 0.5
+                cell.layer.shadowOffset = CGSize(width: -1, height: 1)
+                cell.layer.shadowRadius = 1
+                cell.layer.shouldRasterize = true
+            }
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "DetailViewController", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let indexPath = sender as? IndexPath {
+            if segue.identifier == "DetailViewController" {
+                if let destinationVC = segue.destination as? DetailViewController {
+                    destinationVC.detailViewModel.news = homeViewModel.cellForItem(at: indexPath)
+                    destinationVC.detailViewModel.indexPath = indexPath.row
+                }
+            }
+        }
+    }
+}
+
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (collectionView.bounds.size.width - 40) / 2, height: collectionView.bounds.size.height / 2)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+}
+
+
+class CustomTabbarController : UITabBarController {
+    
 }

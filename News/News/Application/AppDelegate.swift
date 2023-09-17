@@ -5,7 +5,10 @@
 //  Created by Ceren Güneş on 17.09.2023.
 //
 
+import FirebaseAuth
 import FirebaseCore
+import FirebaseFirestore
+import IQKeyboardManagerSwift
 import UIKit
 
 @main
