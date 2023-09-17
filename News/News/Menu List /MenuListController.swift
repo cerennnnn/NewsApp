@@ -18,7 +18,7 @@ enum Items: String {
 }
 
 class MenuListController: UITableViewController {
-
+    
     let items: [Items] = [.business, .entertainment, .general, .health, .science, .sports, .technology]
     let color = UIColor(red: 33/255.0, green: 33/255.0, blue: 33/255.0, alpha: 1)
     
@@ -41,20 +41,20 @@ class MenuListController: UITableViewController {
         return cell
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//
-//        let selectedItem = items[indexPath.row]
-//        let storyboard = UIStoryboard(name: "HomeViewController", bundle: nil)
-//
-//        guard let tabBar = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
-//
-//
-//        tabBar.homeViewModel.loadNews(category: selectedItem.rawValue.lowercased())
-//            navigationController?.pushViewController(tabBar, animated: true)
-//        }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
+        let selectedItem = items[indexPath.row]
+        let storyboard = UIStoryboard(name: "HomeViewController", bundle: nil)
+        
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
+        vc.homeViewModel.loadNews(category: selectedItem.rawValue.lowercased())
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
+}
 
 
 

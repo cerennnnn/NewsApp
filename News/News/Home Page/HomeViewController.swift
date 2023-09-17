@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var homeCollectionView: UICollectionView!
     
+    var activityIndicator: UIActivityIndicatorView!
     private var menu: SideMenuNavigationController?
     var homeViewModel = HomeViewModel()
     
@@ -21,17 +22,19 @@ class HomeViewController: UIViewController {
         
         setupCollectionView()
         setupSideMenu()
+        generateActivityIndicator()
         
         homeViewModel.loadNews()
         homeViewModel.onSuccess = reloadCollectionView()
-        homeViewModel.onError = showError()
-        
+        homeViewModel.onError = showError()        
     }
     
     func reloadCollectionView() -> () -> () {
+        activityIndicator.startAnimating()
         return {
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self.homeCollectionView.reloadData()
+                self.activityIndicator.stopAnimating()
             }
         }
     }
@@ -57,6 +60,13 @@ class HomeViewController: UIViewController {
         SideMenuManager.default.leftMenuNavigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: true)
         SideMenuManager.default.leftMenuNavigationController = menu
         SideMenuManager.default.addPanGestureToPresent(toView: self.view)
+    }
+    
+    private func generateActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.center = view.center
+        activityIndicator.color = .gray
+        view.addSubview(activityIndicator)
     }
     
     @IBAction func SideMenuButtonTapped(_ sender: Any) {
