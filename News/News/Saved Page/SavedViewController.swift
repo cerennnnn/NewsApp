@@ -27,6 +27,20 @@ class SavedNewsViewController: UIViewController {
         savedNewsTableView.dataSource = self
     }
     
+    private func saveItems() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+    }
+    
+    private func deleteItems(indexPath: Int) {
+        context.delete(safeNewsArr.remove(at: indexPath))
+        
+        saveItems()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         loadItems()
     }
@@ -63,8 +77,14 @@ extension SavedNewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        
-        
     }
-    
+  
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+//            safeNewsArr.remove(at: indexPath.row)
+            deleteItems(indexPath: indexPath.row)
+            print("deleted!")
+             tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 }
