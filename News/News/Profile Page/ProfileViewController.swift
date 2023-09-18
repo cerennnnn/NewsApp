@@ -5,25 +5,32 @@
 //  Created by Ceren Güneş on 17.09.2023.
 //
 
+import FirebaseAuth
 import Firebase
 import UIKit
 
 class ProfileViewController: UIViewController {
     
+    @IBOutlet weak var darkModeLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        if let username = UserDefaults.standard.string(forKey: "username"), let email = UserDefaults.standard.string(forKey: "email2") {
-//            usernameLabel.text = username
-//            emailLabel.text = email
-//        }
-//        
+    
         setProfilePic()
         retrieveData(key: "image")
+        
+        if let user = Auth.auth().currentUser {
+            if let email = user.email {
+                emailLabel.text = email
+            } else {
+                print("User do not logged in.")
+            }
+        } else {
+            print("User do not sign up.")
+        }
     }
     
     func setProfilePic() {
@@ -70,9 +77,11 @@ class ProfileViewController: UIViewController {
             let appDelegate = UIApplication.shared.windows.first
             if sender.isOn {
                 appDelegate?.overrideUserInterfaceStyle = .dark
+                darkModeLabel.text = "Dark Mode"
             }
             else{
                 appDelegate?.overrideUserInterfaceStyle = .light
+                darkModeLabel.text = "Light Mode"
             }
     }
 }

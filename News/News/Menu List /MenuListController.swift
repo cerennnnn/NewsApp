@@ -24,7 +24,7 @@ class MenuListController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = color
+        tableView.backgroundColor = .systemOrange
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
@@ -36,7 +36,8 @@ class MenuListController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.textColor = .white
         cell.textLabel?.text = items[indexPath.row].rawValue
-        cell.backgroundColor = color
+        cell.backgroundColor = .systemOrange
+        cell.tintColor = .darkGray
         
         return cell
     }

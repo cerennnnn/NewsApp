@@ -71,7 +71,7 @@ class DetailViewController: UIViewController {
                 } else {
                     deleteItems(indexPath: indexPath)
                 }
-                
+                isSaved.toggle()
                 setupNavigationBar()
             }
         }
