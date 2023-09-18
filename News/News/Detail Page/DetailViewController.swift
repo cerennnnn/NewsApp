@@ -5,6 +5,8 @@
 //  Created by Ceren Güneş on 18.09.2023.
 //
 
+
+import CoreData
 import UIKit
 
 class DetailViewController: UIViewController {
@@ -17,23 +19,15 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailContentLabel: UILabel!
     
     var detailViewModel = DetailViewModel()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var safeNewsArr = [SavedNews]()
+    var isSaved = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let saveButton = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveButtonTapped))
-        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
-        
-        if detailViewModel.isSaved {
-            saveButton.image = UIImage(systemName: "bookmark.fill")
-        } else {
-            saveButton.image = UIImage(systemName: "bookmark")
-        }
-        
-        navigationItem.rightBarButtonItems = [shareButton, saveButton]
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.green
-        navigationController?.navigationBar.barTintColor = UIColor.darkGray
-        navigationItem.titleView?.tintColor = .darkGray
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask ))
+        setupNavigationBar()
         
         if let detail = detailViewModel.news {
             detailImageView.sd_setImage(with: URL(string: detail.urlToImage ?? "person.fill"))
@@ -59,13 +53,62 @@ class DetailViewController: UIViewController {
     }
     
     @objc func saveButtonTapped() {
-        detailViewModel.isSaved.toggle()
+        
+        if let safeNews = detailViewModel.news {
+            if let title = safeNews.title, let description = safeNews.description, let imageURL = safeNews.urlToImage, let indexPath = detailViewModel.indexPath {
+                
+                
+                let new = SavedNews(context: self.context)
+                new.title = title
+                new.desc = description
+                new.image = imageURL
+                
+                safeNewsArr.append(new)
+                
+                if isSaved {
+                    saveItems()
+                } else {
+                    deleteItems(indexPath: indexPath)
+                }
+                
+                isSaved.toggle()
+                setupNavigationBar()
+            }
+        }
     }
     
+    func saveItems() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+    }
+    
+    func deleteItems(indexPath: Int) {
+        context.delete(safeNewsArr.remove(at: indexPath))
+        
+        saveItems()
+    }
     
     @objc func shareButtonTapped() {
         let vc = UIActivityViewController(activityItems: ["Recommend News to others!"], applicationActivities: [])
         vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItems![1]
         self.present(vc, animated: true)
+    }
+    
+    private func setupNavigationBar() {
+        let saveButton = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveButtonTapped))
+        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
+        
+        if isSaved {
+            saveButton.image = UIImage(systemName: "bookmark")
+        } else {
+            saveButton.image = UIImage(systemName: "bookmark.fill")
+        }
+
+        navigationItem.rightBarButtonItems = [shareButton, saveButton]
+//        navigationController?.navigationBar.barTintColor = UIColor.darkGray
+//        navigationItem.titleView?.tintColor = .darkGray
     }
 }

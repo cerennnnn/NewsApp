@@ -9,10 +9,10 @@ import Foundation
 
 final class DetailViewModel {
     var news: News?
-//    var dbNews: [SavedNews]?
+    var dbNews: [SavedNews]?
     var isSaved: Bool = false
     var indexPath: Int?
-//    var safeNewsArr = [SavedNews]()
+    var safeNewsArr = [SavedNews]()
     
     init() {
         
