@@ -28,16 +28,18 @@ class HomeViewController: UIViewController {
         homeViewModel.onSuccess = reloadCollectionView()
         homeViewModel.onError = showError()
         
-//        tabBarController?.navigationController?.isNavigationBarHidden = true
+        tabBarController?.navigationController?.isNavigationBarHidden = true
         
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
+
+//    override func viewWillAppear(_ animated: Bool) {
 //        tabBarController?.tabBar.isHidden = false
 //        tabBarController?.navigationController?.isNavigationBarHidden = false
-    }
-    
+//    }
+
     func reloadCollectionView() -> () -> () {
+        tabBarController?.tabBar.isHidden = false
+        tabBarController?.navigationController?.isNavigationBarHidden = false
         activityIndicator.startAnimating()
         return {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {

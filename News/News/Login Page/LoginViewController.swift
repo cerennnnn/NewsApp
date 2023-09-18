@@ -57,51 +57,54 @@ class LoginViewController: UIViewController {
                 self.present(navBar, animated: true)
                 self.activityIndicator.stopAnimating()
             }
-
+            
         }
         
     }
     
     @IBAction func signInButtonTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "HomeViewController", bundle: nil)
-                  
-
+        
+        
         if let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController {
             if let email = emailTextField.text, let password = passwordTextField.text{
-                //            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-                //                if let e = error {
-                //                    self.handleError(e as! AuthErrorCode)
-                //                } else {
-                lottieAnimation()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    let navBar = UINavigationController(rootViewController: vc)
-                    navBar.modalPresentationStyle = .fullScreen
-                    self.present(navBar, animated: true)
-                    UserDefaults.standard.hasOnboarded = true
-                    //                    }
-                    //                }
+                
+                UserDefaults.standard.set(email, forKey: "email2")
+                
+                Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                    if let e = error {
+                        self.handleError(e as! AuthErrorCode)
+                    } else {
+                        self.lottieAnimation()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                            let navBar = UINavigationController(rootViewController: vc)
+                            vc.modalPresentationStyle = .fullScreen
+                            self.present(vc, animated: true)
+                            UserDefaults.standard.hasOnboarded = true
+                        }
+                    }
                 }
             }
         }
     }
-
-    func generateActivityIndicator() {
-        activityIndicator = UIActivityIndicatorView(style: .medium)
-        activityIndicator.center = view.center
-        activityIndicator.color = .gray
-        view.addSubview(activityIndicator)
-    }
-    
-    func lottieAnimation() {
-        let animationView = LottieAnimationView(name: "tick.json")
-        animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 250)
-        animationView.center = self.view.center
-        animationView.contentMode = .scaleAspectFit
-        view.addSubview(animationView)
-        animationView.play()
-        animationView.loopMode = .autoReverse
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            animationView.stop()
+            
+            func generateActivityIndicator() {
+                activityIndicator = UIActivityIndicatorView(style: .medium)
+                activityIndicator.center = view.center
+                activityIndicator.color = .gray
+                view.addSubview(activityIndicator)
+            }
+            
+            func lottieAnimation() {
+                let animationView = LottieAnimationView(name: "tick.json")
+                animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 250)
+                animationView.center = self.view.center
+                animationView.contentMode = .scaleAspectFit
+                view.addSubview(animationView)
+                animationView.play()
+                animationView.loopMode = .autoReverse
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    animationView.stop()
+                }
+            }
         }
-    }
-}

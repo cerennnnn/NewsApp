@@ -40,6 +40,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wGv-Km-C1G">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="systemOrangeColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <userDefinedRuntimeAttributes>
@@ -61,10 +62,81 @@
                     <view key="view" contentMode="scaleToFill" id="bF8-m0-v8p">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMN-kf-NYY">
+                                <rect key="frame" x="96.666666666666686" y="624" width="200" height="65"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="UyI-3G-nHL"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="ipY-sI-ja9"/>
+                                    <constraint firstAttribute="height" constant="65" id="j5H-j8-sNm"/>
+                                    <constraint firstAttribute="width" constant="200" id="lTC-wy-A1F"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="LOG OUT">
+                                    <fontDescription key="titleFontDescription" name="HoeflerText-Black" family="Hoefler Text" pointSize="16"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="30"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="logOutButtonTapped:" destination="Bac-io-y7P" eventType="touchUpInside" id="Cdf-5X-Jv3"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="49" translatesAutoresizingMaskIntoConstraints="NO" id="o3b-HG-oj1">
+                                <rect key="frame" x="149" y="381.66666666666669" width="95" height="89"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNt-8z-BxR">
+                                        <rect key="frame" x="0.0" y="0.0" width="95" height="20"/>
+                                        <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8i-WC-sWt">
+                                        <rect key="frame" x="0.0" y="69" width="54.333333333333336" height="20"/>
+                                        <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A6h-xx-mag">
+                                <rect key="frame" x="96.666666666666686" y="91" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="vQd-4f-oT8"/>
+                                    <constraint firstAttribute="height" constant="200" id="zIw-RF-iUA"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="100"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Gv-EA-PxA">
+                                <rect key="frame" x="172" y="502" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="onTintColor" systemColor="tintColor"/>
+                                <connections>
+                                    <action selector="darkModeButtonTapped:" destination="Bac-io-y7P" eventType="valueChanged" id="rIE-zP-rfY"/>
+                                </connections>
+                            </switch>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Aw9-TJ-cKL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="A6h-xx-mag" firstAttribute="centerX" secondItem="bF8-m0-v8p" secondAttribute="centerX" id="3hz-Oz-BhI"/>
+                            <constraint firstItem="iMN-kf-NYY" firstAttribute="centerX" secondItem="bF8-m0-v8p" secondAttribute="centerX" id="3lO-iX-Zr7"/>
+                            <constraint firstItem="Aw9-TJ-cKL" firstAttribute="bottom" secondItem="iMN-kf-NYY" secondAttribute="bottom" constant="80" id="YBg-v3-Cda"/>
+                            <constraint firstItem="o3b-HG-oj1" firstAttribute="centerY" secondItem="bF8-m0-v8p" secondAttribute="centerY" id="eGv-ll-gCH"/>
+                            <constraint firstItem="A6h-xx-mag" firstAttribute="top" secondItem="Aw9-TJ-cKL" secondAttribute="top" constant="32" id="qGx-Ae-124"/>
+                            <constraint firstItem="o3b-HG-oj1" firstAttribute="centerX" secondItem="bF8-m0-v8p" secondAttribute="centerX" id="vxS-Nd-a6t"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" selectedImage="person.fill" id="GIW-3K-3XA"/>
+                    <connections>
+                        <outlet property="emailLabel" destination="l8i-WC-sWt" id="OsY-dp-D7v"/>
+                        <outlet property="profileImageView" destination="A6h-xx-mag" id="XrW-1a-6ll"/>
+                        <outlet property="usernameLabel" destination="jNt-8z-BxR" id="AQk-b9-6MX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CFE-tj-D3C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -553,6 +625,9 @@
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

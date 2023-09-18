@@ -24,7 +24,7 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFU-l9-KvN">
                                 <rect key="frame" x="32" y="665" width="100" height="2"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Rhy-MJ-S8E"/>
                                     <constraint firstAttribute="height" constant="2" id="WEf-wg-bZ4"/>
@@ -32,7 +32,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EjG-8B-kD9">
                                 <rect key="frame" x="261" y="665" width="100" height="2"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="OWa-UG-XXJ"/>
                                     <constraint firstAttribute="width" constant="100" id="cwd-7c-Ytg"/>
@@ -40,7 +40,7 @@
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="OfJ-Ym-ghh">
                                 <rect key="frame" x="146.66666666666666" y="529.33333333333337" width="100" height="99.666666666666629"/>
-                                <color key="tintColor" red="0.96470588450000005" green="0.96470588450000005" blue="0.96470588450000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Kvx-dm-Knm"/>
                                     <constraint firstAttribute="height" constant="100" id="uBC-OL-aat"/>
@@ -68,9 +68,6 @@
     </scenes>
     <resources>
         <image name="newspaper" catalog="system" width="128" height="111"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -81,10 +81,8 @@ extension SavedNewsViewController: UITableViewDelegate, UITableViewDataSource {
   
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-//            safeNewsArr.remove(at: indexPath.row)
             deleteItems(indexPath: indexPath.row)
-            print("deleted!")
-             tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.deleteRows(at: [indexPath], with: .bottom)
         }
     }
 }

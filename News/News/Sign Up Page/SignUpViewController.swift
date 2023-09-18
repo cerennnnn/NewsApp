@@ -53,6 +53,10 @@ class SignUpViewController: UIViewController {
         let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         
         if let username = usernameTextField.text, let email = emailTextField.text, let password = passwordTextField.text, let confirmPassword = confirmPasswordTextField.text {
+            
+//            UserDefaults.standard.set(username, forKey: "username")
+//            UserDefaults.standard.set(email, forKey: "email")
+            
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if let e = error {
                     self.handleError(e as! AuthErrorCode)
@@ -64,8 +68,11 @@ class SignUpViewController: UIViewController {
                     } else {
                         self.showAlert()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                            self.navigationController?.pushViewController(vc,
-                            animated: true)
+//                            self.navigationController?.pushViewController(vc,
+//                            animated: true)
+                            let navBar = UINavigationController(rootViewController: vc)
+                            navBar.modalPresentationStyle = .fullScreen
+                            self.present(navBar, animated: true)
                         }
                     }
                 }

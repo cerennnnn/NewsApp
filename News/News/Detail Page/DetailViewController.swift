@@ -65,13 +65,13 @@ class DetailViewController: UIViewController {
                 
                 safeNewsArr.append(new)
                 
+//                isSaved = safeNewsArr.contains{$0.title == new.title}
                 if isSaved {
                     saveItems()
                 } else {
                     deleteItems(indexPath: indexPath)
                 }
                 
-                isSaved.toggle()
                 setupNavigationBar()
             }
         }
@@ -108,7 +108,5 @@ class DetailViewController: UIViewController {
         }
 
         navigationItem.rightBarButtonItems = [shareButton, saveButton]
-//        navigationController?.navigationBar.barTintColor = UIColor.darkGray
-//        navigationItem.titleView?.tintColor = .darkGray
     }
 }
