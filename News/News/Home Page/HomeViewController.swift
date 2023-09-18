@@ -26,7 +26,15 @@ class HomeViewController: UIViewController {
         
         homeViewModel.loadNews()
         homeViewModel.onSuccess = reloadCollectionView()
-        homeViewModel.onError = showError()        
+        homeViewModel.onError = showError()
+        
+//        tabBarController?.navigationController?.isNavigationBarHidden = true
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        tabBarController?.tabBar.isHidden = false
+//        tabBarController?.navigationController?.isNavigationBarHidden = false
     }
     
     func reloadCollectionView() -> () -> () {
