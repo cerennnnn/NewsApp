@@ -23,7 +23,7 @@ class MenuListController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = UIColor(named: "sideMenuColor")
+        tableView.backgroundColor = .systemOrange
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
@@ -33,10 +33,9 @@ class MenuListController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.textColor = .darkGray
+        cell.textLabel?.textColor = .white
         cell.textLabel?.text = menuListViewModel.items[indexPath.row].rawValue
-        cell.backgroundColor = UIColor(named: "sideMenuColor")
-        cell.tintColor = .darkGray
+        cell.backgroundColor = .systemOrange
         
         return cell
     }
@@ -49,7 +48,7 @@ class MenuListController: UITableViewController {
         
         guard let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
         vc.homeViewModel.loadNews(category: selectedItem.rawValue.lowercased())
-//        vc.hidesBottomBarWhenPushed = false
+
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

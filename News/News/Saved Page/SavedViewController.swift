@@ -14,6 +14,7 @@ class SavedNewsViewController: UIViewController {
         
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var safeNewsArr = [SavedNews]()
+    let savedNewsViewModel = SavedNewsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,7 @@ class SavedNewsViewController: UIViewController {
     }
     
     private func deleteItems(indexPath: Int) {
-        context.delete(safeNewsArr.remove(at: indexPath))
+        context.delete(savedNewsViewModel.safeNewsArr.remove(at: indexPath))
         
         saveItems()
     }
@@ -46,25 +47,20 @@ class SavedNewsViewController: UIViewController {
     }
     
     func loadItems() {
-        do {
-            let results = try context.fetch(SavedNews.fetchRequest())
-            safeNewsArr = results
-        } catch {
-            print("Error fetching data from context \(error)")
-        }
+        savedNewsViewModel.fetchNews()
         savedNewsTableView.reloadData()
     }
 }
 
 extension SavedNewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return safeNewsArr.count
+        return savedNewsViewModel.safeNewsArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SavedNewsTableViewCell", for: indexPath) as!
         SavedNewsTableViewCell
-        let selectedNew = safeNewsArr[indexPath.row]
+        let selectedNew = savedNewsViewModel.safeNewsArr[indexPath.row]
         
         cell.savedNewsTitleLabel.text = selectedNew.title
         cell.savedNewsDescriptionLabel.text = selectedNew.desc

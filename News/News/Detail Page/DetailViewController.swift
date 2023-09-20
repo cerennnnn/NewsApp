@@ -76,9 +76,9 @@ class DetailViewController: UIViewController {
     @IBAction func saveButtonTapped(_ sender: Any) {
         if isSaved {
             do {
-                let id = detailViewModel.news?.source?.id
+                let title = detailViewModel.news?.title
                 let results = try context.fetch(SavedNews.fetchRequest())
-                if let savedNew = results.first(where: { $0.id == id }) {
+                if let savedNew = results.first(where: { $0.title == title }) {
                     context.delete(savedNew)
                     appDelegate.saveContext()
                     isSaved = false
@@ -101,8 +101,8 @@ class DetailViewController: UIViewController {
     private func fetchFavNews(){
         do {
             let results = try context.fetch(SavedNews.fetchRequest())
-            if let id = detailViewModel.news?.source?.id {
-                isSaved = results.contains { $0.id == id }
+            if let title = detailViewModel.news?.title {
+                isSaved = results.contains { $0.title == title }
                 if isSaved {
                     changeFavButton()
                 }

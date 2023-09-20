@@ -10,18 +10,37 @@ import UIKit
 
 final class ProfileViewModel {
     
-    func switchToDarkMode(sender: UISwitch) -> String {
-        var labelText: String
+    func getEmail() -> String {
+        if let user = Auth.auth().currentUser {
+            if let email = user.email {
+                return email
+            } else {
+                return "User do not logged in."
+            }
+        } else {
+            return "User do not sign up."
+        }
+    }
+    
+    func darkModeButtonTapped(_ sender: UISwitch) -> String {
         let appDelegate = UIApplication.shared.windows.first
-        if sender.isOn {
-            appDelegate?.overrideUserInterfaceStyle = .dark
-            labelText = "Dark Mode"
-        }
-        else{
-            appDelegate?.overrideUserInterfaceStyle = .light
-            labelText = "Light Mode"
-        }
+        let isDarkModeEnabled = UserDefaults.standard.bool(forKey: "DarkModeEnabled")
         
-        return labelText
+        if sender.isOn {
+            if isDarkModeEnabled {
+                UserDefaults.standard.set(false, forKey: "DarkModeEnabled")
+                appDelegate?.overrideUserInterfaceStyle = .dark
+                return "Dark Mode"
+            } else {
+                // Dark Mode kapalı, gerekli tasarımı uygula
+                UserDefaults.standard.set(true, forKey: "DarkModeEnabled")
+                appDelegate?.overrideUserInterfaceStyle = .light
+                return "Light Mode"
+            }
+        } else {
+            UserDefaults.standard.set(false, forKey: "DarkModeEnabled")
+            appDelegate?.overrideUserInterfaceStyle = .dark
+            return "Dark Mode"
+        }
     }
 }

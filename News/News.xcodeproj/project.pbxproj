@@ -17,7 +17,7 @@
 		338977C92ABAF7C1002B01C8 /* MenuListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338977C82ABAF7C1002B01C8 /* MenuListViewModel.swift */; };
 		338977CB2ABAFD41002B01C8 /* woman.json in Resources */ = {isa = PBXBuildFile; fileRef = 338977CA2ABAFD41002B01C8 /* woman.json */; };
 		338977CD2ABAFD92002B01C8 /* login.json in Resources */ = {isa = PBXBuildFile; fileRef = 338977CC2ABAFD92002B01C8 /* login.json */; };
-		338977CF2ABB00C1002B01C8 /* tick.json in Resources */ = {isa = PBXBuildFile; fileRef = 338977CE2ABB00C1002B01C8 /* tick.json */; };
+		338977D12ABB5585002B01C8 /* tick.json in Resources */ = {isa = PBXBuildFile; fileRef = 338977D02ABB5585002B01C8 /* tick.json */; };
 		33FC59752AB7999F0008CEB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC59742AB7999F0008CEB2 /* AppDelegate.swift */; };
 		33FC59772AB7999F0008CEB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC59762AB7999F0008CEB2 /* SceneDelegate.swift */; };
 		33FC597E2AB799A20008CEB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33FC597D2AB799A20008CEB2 /* Assets.xcassets */; };
@@ -73,7 +73,7 @@
 		338977C82ABAF7C1002B01C8 /* MenuListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListViewModel.swift; sourceTree = "<group>"; };
 		338977CA2ABAFD41002B01C8 /* woman.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = woman.json; sourceTree = "<group>"; };
 		338977CC2ABAFD92002B01C8 /* login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = login.json; sourceTree = "<group>"; };
-		338977CE2ABB00C1002B01C8 /* tick.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tick.json; sourceTree = "<group>"; };
+		338977D02ABB5585002B01C8 /* tick.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tick.json; sourceTree = "<group>"; };
 		33FC59712AB7999F0008CEB2 /* News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = News.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FC59742AB7999F0008CEB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33FC59762AB7999F0008CEB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				3361A9922AB84E8F00BC18F7 /* SavedNewsTableViewCell.swift */,
-				3335528B2AB9970E00837E02 /* SavedNewsViewModel.swift */,
 			);
 			path = _components;
 			sourceTree = "<group>";
@@ -241,6 +240,7 @@
 			children = (
 				3361A9912AB84E8700BC18F7 /* _components */,
 				33FC59932AB79C4B0008CEB2 /* SavedViewController.swift */,
+				3335528B2AB9970E00837E02 /* SavedNewsViewModel.swift */,
 			);
 			path = "Saved Page";
 			sourceTree = "<group>";
@@ -310,7 +310,7 @@
 				33FC59B32AB7A0D20008CEB2 /* newspaper.json */,
 				33FC59B42AB7A0D20008CEB2 /* phone.json */,
 				33FC59B22AB7A0D10008CEB2 /* signUp.json */,
-				338977CE2ABB00C1002B01C8 /* tick.json */,
+				338977D02ABB5585002B01C8 /* tick.json */,
 				338977CA2ABAFD41002B01C8 /* woman.json */,
 				33FC59AF2AB7A0BE0008CEB2 /* world.json */,
 			);
@@ -365,6 +365,7 @@
 			children = (
 				33FC59ED2AB7BC000008CEB2 /* _components */,
 				33FC59E92AB7B6D60008CEB2 /* DetailViewController.swift */,
+				33FC59EB2AB7B7B60008CEB2 /* DetailViewModel.swift */,
 			);
 			path = "Detail Page";
 			sourceTree = "<group>";
@@ -373,7 +374,6 @@
 			isa = PBXGroup;
 			children = (
 				33FC59EE2AB7BC0F0008CEB2 /* DetailLinkViewController.swift */,
-				33FC59EB2AB7B7B60008CEB2 /* DetailViewModel.swift */,
 			);
 			path = _components;
 			sourceTree = "<group>";
@@ -453,7 +453,7 @@
 			files = (
 				33FC59B82AB7A0D20008CEB2 /* phone.json in Resources */,
 				33FC59B02AB7A0BE0008CEB2 /* world.json in Resources */,
-				338977CF2ABB00C1002B01C8 /* tick.json in Resources */,
+				338977D12ABB5585002B01C8 /* tick.json in Resources */,
 				338977CD2ABAFD92002B01C8 /* login.json in Resources */,
 				33FC59B62AB7A0D20008CEB2 /* signUp.json in Resources */,
 				33FC59A22AB79EB90008CEB2 /* OnboardingViewController.storyboard in Resources */,

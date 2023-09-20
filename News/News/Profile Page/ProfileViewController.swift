@@ -15,21 +15,15 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     
+    let profileViewModel = ProfileViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
         setProfilePic()
         retrieveData(key: "image")
         
-        if let user = Auth.auth().currentUser {
-            if let email = user.email {
-                emailLabel.text = email
-            } else {
-                print("User do not logged in.")
-            }
-        } else {
-            print("User do not sign up.")
-        }
+        emailLabel.text = profileViewModel.getEmail()
     }
     
     func setProfilePic() {
@@ -73,18 +67,9 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func darkModeButtonTapped(_ sender: UISwitch) {
-            let appDelegate = UIApplication.shared.windows.first
-            if sender.isOn {
-                appDelegate?.overrideUserInterfaceStyle = .dark
-                darkModeLabel.text = "Dark Mode"
-            }
-            else{
-                appDelegate?.overrideUserInterfaceStyle = .light
-                darkModeLabel.text = "Light Mode"
-            }
+        darkModeLabel.text = profileViewModel.darkModeButtonTapped(sender)
     }
 }
-
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

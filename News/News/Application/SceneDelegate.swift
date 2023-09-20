@@ -19,6 +19,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         var storyboard: UIStoryboard!
         
+        if window.traitCollection.userInterfaceStyle == .dark {
+            // Dark Mode aktif
+            UserDefaults.standard.set(true, forKey: "DarkModeEnabled") // Dark Mode aktifse true, değilse false
+        } else {
+            // Light Mode aktif
+            UserDefaults.standard.set(false, forKey: "DarkModeEnabled") // Dark Mode aktifse true, değilse false
+        }
+        
         if UserDefaults.standard.hasOnboarded {
             storyboard = UIStoryboard(name: "HomeViewController", bundle: nil)
             
