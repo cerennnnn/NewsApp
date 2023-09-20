@@ -33,7 +33,7 @@ class SignUpViewController: UIViewController {
     }
     
     private func setupAnimation() {
-        let greeting = LottieAnimationView(name: "greeting.json")
+        let greeting = LottieAnimationView(name: "woman.json")
         
         animationView.animation = greeting.animation
         animationView.loopMode = .autoReverse

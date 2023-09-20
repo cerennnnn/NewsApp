@@ -26,6 +26,7 @@ class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavigationBar()
         setupOnboardingCollectionView()
         getAnimations()
     }
@@ -56,8 +57,16 @@ class OnboardingViewController: UIViewController {
         }
     }
     
-    @IBAction func skipButtonTapped(_ sender: Any) {
-        goToLoginViewController()
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Skip", style: .plain, target: self, action: #selector(skipButtonTapped))
+    }
+    
+    @objc func skipButtonTapped() {
+        let storyboard = UIStoryboard(name: "LoginViewController", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
     
     private func goToLoginViewController() {

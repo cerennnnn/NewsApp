@@ -77,7 +77,6 @@ class LoginViewController: UIViewController {
                     } else {
                         self.lottieAnimation()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                            let navBar = UINavigationController(rootViewController: vc)
                             vc.modalPresentationStyle = .fullScreen
                             self.present(vc, animated: true)
                             UserDefaults.standard.hasOnboarded = true
@@ -87,24 +86,24 @@ class LoginViewController: UIViewController {
             }
         }
     }
-            
-            func generateActivityIndicator() {
-                activityIndicator = UIActivityIndicatorView(style: .medium)
-                activityIndicator.center = view.center
-                activityIndicator.color = .gray
-                view.addSubview(activityIndicator)
-            }
-            
-            func lottieAnimation() {
-                let animationView = LottieAnimationView(name: "tick.json")
-                animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 250)
-                animationView.center = self.view.center
-                animationView.contentMode = .scaleAspectFit
-                view.addSubview(animationView)
-                animationView.play()
-                animationView.loopMode = .autoReverse
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    animationView.stop()
-                }
-            }
+    
+    func generateActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.center = view.center
+        activityIndicator.color = .gray
+        view.addSubview(activityIndicator)
+    }
+    
+    func lottieAnimation() {
+        let animationView = LottieAnimationView(name: "tick.json")
+        animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 250)
+        animationView.center = self.view.center
+        animationView.contentMode = .scaleAspectFit
+        view.addSubview(animationView)
+        animationView.play()
+        animationView.loopMode = .autoReverse
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            animationView.stop()
         }
+    }
+}

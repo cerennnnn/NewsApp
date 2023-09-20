@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22G91" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="SavedNews" representedClassName="SavedNews" syncable="YES" codeGenerationType="class">
         <attribute name="desc" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
         <attribute name="image" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
     </entity>

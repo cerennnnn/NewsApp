@@ -12,7 +12,6 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var darkModeLabel: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     
@@ -34,7 +33,7 @@ class ProfileViewController: UIViewController {
     }
     
     func setProfilePic() {
-        profileImageView.image = UIImage(systemName: "photo")
+        profileImageView.image = UIImage(systemName: "photo.circle.fill")
         profileImageView.isUserInteractionEnabled = true
         let imageTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImage))
         profileImageView.addGestureRecognizer(imageTapRecognizer)

@@ -46,10 +46,9 @@ class SavedNewsViewController: UIViewController {
     }
     
     func loadItems() {
-        let request: NSFetchRequest<SavedNews> = SavedNews.fetchRequest()
-        
         do {
-             safeNewsArr = try context.fetch(request)
+            let results = try context.fetch(SavedNews.fetchRequest())
+            safeNewsArr = results
         } catch {
             print("Error fetching data from context \(error)")
         }

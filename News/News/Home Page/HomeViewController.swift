@@ -27,22 +27,13 @@ class HomeViewController: UIViewController {
         homeViewModel.loadNews()
         homeViewModel.onSuccess = reloadCollectionView()
         homeViewModel.onError = showError()
-        
-        tabBarController?.navigationController?.isNavigationBarHidden = true
-        
+
     }
-
-//    override func viewWillAppear(_ animated: Bool) {
-//        tabBarController?.tabBar.isHidden = false
-//        tabBarController?.navigationController?.isNavigationBarHidden = false
-//    }
-
+    
     func reloadCollectionView() -> () -> () {
-        tabBarController?.tabBar.isHidden = false
-        tabBarController?.navigationController?.isNavigationBarHidden = false
         activityIndicator.startAnimating()
         return {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            DispatchQueue.main.async {
                 self.homeCollectionView.reloadData()
                 self.activityIndicator.stopAnimating()
             }
@@ -94,7 +85,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as? HomeCollectionViewCell {
-            
             let selectedItem = homeViewModel.cellForItem(at: indexPath)
             
             if let selectedImage = selectedItem.urlToImage {
@@ -109,7 +99,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 cell.layer.shadowRadius = 1
                 cell.layer.shouldRasterize = true
             }
+            
             return cell
+            
         }
         return UICollectionViewCell()
     }

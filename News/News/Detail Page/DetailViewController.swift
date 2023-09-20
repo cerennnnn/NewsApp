@@ -17,18 +17,22 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailAuthorLabel: UILabel!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet weak var detailContentLabel: UILabel!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
+    let context = appDelegate.persistentContainer.viewContext
     var detailViewModel = DetailViewModel()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var safeNewsArr = [SavedNews]()
-    var isSaved = true
+    var isSaved = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask ))
-        setupNavigationBar()
-        
+        getDetails()
+        fetchFavNews()
+    }
+    
+    private func getDetails() {
         if let detail = detailViewModel.news {
             detailImageView.sd_setImage(with: URL(string: detail.urlToImage ?? "person.fill"))
             detailTitleLabel.text = detail.title
@@ -43,70 +47,76 @@ class DetailViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "DetailLinkViewController" {
-                if let destinationVC = segue.destination as? DetailLinkViewController {
-                    if let urlString = detailViewModel.news?.url {
-                        destinationVC.urlString = urlString
-                    }
+        if segue.identifier == "DetailLinkViewController" {
+            if let destinationVC = segue.destination as? DetailLinkViewController {
+                if let urlString = detailViewModel.news?.url {
+                    destinationVC.urlString = urlString
                 }
             }
+        }
     }
     
-    @objc func saveButtonTapped() {
+    func saveFavNews(){
+        let context = appDelegate.persistentContainer.viewContext
+        let news = SavedNews(context: context)
         
         if let safeNews = detailViewModel.news {
-            if let title = safeNews.title, let description = safeNews.description, let imageURL = safeNews.urlToImage, let indexPath = detailViewModel.indexPath {
-                
-                
-                let new = SavedNews(context: self.context)
-                new.title = title
-                new.desc = description
-                new.image = imageURL
-                
-                safeNewsArr.append(new)
-                
-//                isSaved = safeNewsArr.contains{$0.title == new.title}
-                if isSaved {
-                    saveItems()
-                } else {
-                    deleteItems(indexPath: indexPath)
+            news.title = safeNews.title
+            news.desc = safeNews.description
+            news.image = safeNews.urlToImage
+            news.id = safeNews.source?.id
+            
+            appDelegate.saveContext()
+            isSaved = true
+            changeFavButton()
+            
+        }
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        if isSaved {
+            do {
+                let id = detailViewModel.news?.source?.id
+                let results = try context.fetch(SavedNews.fetchRequest())
+                if let savedNew = results.first(where: { $0.id == id }) {
+                    context.delete(savedNew)
+                    appDelegate.saveContext()
+                    isSaved = false
+                    changeFavButton()
                 }
-                isSaved.toggle()
-                setupNavigationBar()
+            } catch {
+                print(error.localizedDescription)
             }
+        } else {
+            saveFavNews()
         }
     }
     
-    func saveItems() {
-        do {
-            try context.save()
-        } catch {
-            print("Error saving context \(error)")
-        }
-    }
-    
-    func deleteItems(indexPath: Int) {
-        context.delete(safeNewsArr.remove(at: indexPath))
-        
-        saveItems()
-    }
-    
-    @objc func shareButtonTapped() {
+    @IBAction func shareButtonTapped(_ sender: Any) {
         let vc = UIActivityViewController(activityItems: ["Recommend News to others!"], applicationActivities: [])
         vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItems![1]
         self.present(vc, animated: true)
     }
     
-    private func setupNavigationBar() {
-        let saveButton = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(saveButtonTapped))
-        let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareButtonTapped))
-        
-        if isSaved {
-            saveButton.image = UIImage(systemName: "bookmark")
-        } else {
-            saveButton.image = UIImage(systemName: "bookmark.fill")
+    private func fetchFavNews(){
+        do {
+            let results = try context.fetch(SavedNews.fetchRequest())
+            if let id = detailViewModel.news?.source?.id {
+                isSaved = results.contains { $0.id == id }
+                if isSaved {
+                    changeFavButton()
+                }
+            }
+        } catch {
+            print(error.localizedDescription)
         }
-
-        navigationItem.rightBarButtonItems = [shareButton, saveButton]
+    }
+    
+    func changeFavButton(){
+        if isSaved == true {
+            saveButton.image = UIImage(systemName: "bookmark.fill")
+        } else {
+            saveButton.image = UIImage(systemName: "bookmark")
+        }
     }
 }

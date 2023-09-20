@@ -19,24 +19,23 @@ enum Items: String {
 
 class MenuListController: UITableViewController {
     
-    let items: [Items] = [.business, .entertainment, .general, .health, .science, .sports, .technology]
-    let color = UIColor(red: 33/255.0, green: 33/255.0, blue: 33/255.0, alpha: 1)
+    let menuListViewModel = MenuListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = .systemOrange
+        tableView.backgroundColor = UIColor(named: "sideMenuColor")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return menuListViewModel.items.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.textColor = .white
-        cell.textLabel?.text = items[indexPath.row].rawValue
-        cell.backgroundColor = .systemOrange
+        cell.textLabel?.textColor = .darkGray
+        cell.textLabel?.text = menuListViewModel.items[indexPath.row].rawValue
+        cell.backgroundColor = UIColor(named: "sideMenuColor")
         cell.tintColor = .darkGray
         
         return cell
@@ -45,12 +44,12 @@ class MenuListController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let selectedItem = items[indexPath.row]
+        let selectedItem = menuListViewModel.items[indexPath.row]
         let storyboard = UIStoryboard(name: "HomeViewController", bundle: nil)
         
         guard let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
         vc.homeViewModel.loadNews(category: selectedItem.rawValue.lowercased())
-        vc.hidesBottomBarWhenPushed = false
+//        vc.hidesBottomBarWhenPushed = false
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

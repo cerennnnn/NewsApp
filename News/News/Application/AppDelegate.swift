@@ -12,6 +12,8 @@ import FirebaseFirestore
 import IQKeyboardManagerSwift
 import UIKit
 
+let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -39,31 +41,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: - Core Data stack
-
+    
     lazy var persistentContainer: NSPersistentContainer = {
+            let container = NSPersistentContainer(name: "NewsData")
 
-        let container = NSPersistentContainer(name: "NewsData")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
+            container.loadPersistentStores(completionHandler: { description, error in
+                if let e = error {
+                    print(e.localizedDescription)
+                }
+            })
+            return container
+        }()
 
     // MARK: - Core Data Saving support
 
-    func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        func saveContext(){
+            let context = persistentContainer.viewContext
+            if context.hasChanges{
+                do{
+                    try context.save()
+                }catch{
+                    print(error.localizedDescription)
+                }
             }
         }
-    }
-
 }
 
