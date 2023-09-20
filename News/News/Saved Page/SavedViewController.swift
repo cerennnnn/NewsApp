@@ -12,8 +12,6 @@ class SavedNewsViewController: UIViewController {
     
     @IBOutlet weak var savedNewsTableView: UITableView!
         
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var safeNewsArr = [SavedNews]()
     let savedNewsViewModel = SavedNewsViewModel()
     
     override func viewDidLoad() {
@@ -29,17 +27,11 @@ class SavedNewsViewController: UIViewController {
     }
     
     private func saveItems() {
-        do {
-            try context.save()
-        } catch {
-            print("Error saving context \(error)")
-        }
+        savedNewsViewModel.saveItems()
     }
     
     private func deleteItems(indexPath: Int) {
-        context.delete(savedNewsViewModel.safeNewsArr.remove(at: indexPath))
-        
-        saveItems()
+        savedNewsViewModel.deleteItems(indexPath: indexPath)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,12 +63,12 @@ extension SavedNewsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
   
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
-            deleteItems(indexPath: indexPath.row)
+            savedNewsViewModel.deleteItems(indexPath: savedNewsViewModel.indexPath ?? 0)
             tableView.deleteRows(at: [indexPath], with: .bottom)
         }
     }

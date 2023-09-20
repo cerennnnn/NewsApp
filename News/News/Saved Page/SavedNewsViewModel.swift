@@ -11,7 +11,7 @@ import UIKit
 final class SavedNewsViewModel {
     let context = appDelegate.persistentContainer.viewContext
     var safeNewsArr = [SavedNews]()
-    
+    var indexPath: Int?
     
     func fetchNews() {
         let request: NSFetchRequest<SavedNews> = SavedNews.fetchRequest()
@@ -21,6 +21,20 @@ final class SavedNewsViewModel {
         } catch {
             print("Error fetching data from context \(error)")
         }
+    }
+    
+    func saveItems() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+    }
+    
+    func deleteItems(indexPath: Int) {
+        context.delete(safeNewsArr.remove(at: indexPath))
+        
+        saveItems()
     }
 }
 
