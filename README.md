@@ -1,6 +1,6 @@
 # UPSchoolAkbankiOSDeveloperBootcamp
 
-For my capstone project for UP School & Akbank iOS Developer Bootcamp, I developed a News application using https://newsapi.org. 
+For my capstone project for UP School & Akbank iOS Developer Bootcamp, I developed a News application using https://newsapi.org with MVVM design pattern. 
 
 Technologies:
 ✨ Xcode - Storyboard 
