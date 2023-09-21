@@ -7,8 +7,6 @@
 
 import Foundation
 
-// API key -> a04d4753e1b0457a9da5fe7e632614c1
-
 //https://newsapi.org/v2/everything?q=Apple&from=2023-09-11&sortBy=popularity&apiKey=a04d4753e1b0457a9da5fe7e632614c1
 
 final class SearchViewModel {
