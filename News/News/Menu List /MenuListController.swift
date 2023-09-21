@@ -48,6 +48,7 @@ class MenuListController: UITableViewController {
         
         guard let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
         vc.homeViewModel.loadNews(category: selectedItem.rawValue.lowercased())
+        vc.title = selectedItem.rawValue.uppercased()
 
         self.navigationController?.pushViewController(vc, animated: true)
     }

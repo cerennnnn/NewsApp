@@ -25,7 +25,6 @@ class SignUpViewController: UIViewController {
         setupNavigationBar()
         setupAnimation()
         setupTextFields()
-        
     }
     
     private func setupNavigationBar() {

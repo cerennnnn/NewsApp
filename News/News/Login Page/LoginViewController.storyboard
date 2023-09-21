@@ -64,8 +64,8 @@
                                 <rect key="frame" x="96.666666666666686" y="648" width="200" height="65"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="65" id="1oq-mN-Npy"/>
-                                    <constraint firstAttribute="width" constant="200" id="iM4-ze-h3p"/>
+                                    <constraint firstAttribute="width" constant="200" id="Kep-mq-YuW"/>
+                                    <constraint firstAttribute="height" constant="65" id="Q6E-5i-ek1"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="SIGN IN">
@@ -112,7 +112,6 @@
                         <viewLayoutGuide key="safeArea" id="XZP-0P-Gdt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="cz9-Yw-jiK" firstAttribute="centerX" secondItem="C2S-In-g6I" secondAttribute="centerX" id="1Of-OB-PdQ"/>
                             <constraint firstItem="pDz-cW-g0T" firstAttribute="leading" secondItem="XZP-0P-Gdt" secondAttribute="leading" constant="16" id="2v2-kO-Gby"/>
                             <constraint firstItem="XZP-0P-Gdt" firstAttribute="bottom" secondItem="ndr-Z6-f1L" secondAttribute="bottom" constant="24" id="3z5-7Y-sVo"/>
                             <constraint firstItem="at5-4W-q5E" firstAttribute="leading" secondItem="XZP-0P-Gdt" secondAttribute="leading" constant="32" id="4nH-e0-koY"/>
@@ -122,14 +121,15 @@
                             <constraint firstItem="XZP-0P-Gdt" firstAttribute="bottom" secondItem="UIa-RV-S1Z" secondAttribute="bottom" constant="32" id="Ay3-6X-kAB"/>
                             <constraint firstItem="XZP-0P-Gdt" firstAttribute="trailing" secondItem="KKe-OO-a4X" secondAttribute="trailing" constant="16" id="IFZ-O9-XlE"/>
                             <constraint firstItem="gPP-HU-UmB" firstAttribute="top" secondItem="XZP-0P-Gdt" secondAttribute="top" constant="8" id="KCz-CG-pCk"/>
+                            <constraint firstItem="ndr-Z6-f1L" firstAttribute="top" secondItem="cz9-Yw-jiK" secondAttribute="bottom" constant="52" id="KI0-wd-kXx"/>
                             <constraint firstItem="mYp-5X-cM1" firstAttribute="leading" secondItem="XZP-0P-Gdt" secondAttribute="leading" constant="32" id="LXX-xd-23J"/>
                             <constraint firstItem="gPP-HU-UmB" firstAttribute="trailing" secondItem="XZP-0P-Gdt" secondAttribute="trailing" id="Pb1-ug-0vw"/>
                             <constraint firstItem="gPP-HU-UmB" firstAttribute="leading" secondItem="XZP-0P-Gdt" secondAttribute="leading" id="Q5i-kM-Sk2"/>
+                            <constraint firstItem="cz9-Yw-jiK" firstAttribute="centerX" secondItem="C2S-In-g6I" secondAttribute="centerX" id="S0b-1h-lts"/>
                             <constraint firstItem="mYp-5X-cM1" firstAttribute="top" secondItem="pDz-cW-g0T" secondAttribute="bottom" constant="32" id="Uma-zo-f83"/>
                             <constraint firstItem="XZP-0P-Gdt" firstAttribute="trailing" secondItem="mYp-5X-cM1" secondAttribute="trailing" constant="32" id="e6B-ri-9bp"/>
                             <constraint firstItem="Uxr-u5-Be9" firstAttribute="top" secondItem="gPP-HU-UmB" secondAttribute="bottom" constant="8" id="eFA-e8-7I8"/>
                             <constraint firstItem="KKe-OO-a4X" firstAttribute="top" secondItem="at5-4W-q5E" secondAttribute="bottom" constant="8" id="mPb-Va-1Uz"/>
-                            <constraint firstItem="cz9-Yw-jiK" firstAttribute="top" secondItem="KKe-OO-a4X" secondAttribute="bottom" constant="64" id="olT-bC-7We"/>
                             <constraint firstItem="XZP-0P-Gdt" firstAttribute="trailing" secondItem="at5-4W-q5E" secondAttribute="trailing" constant="32" id="rsa-PJ-AAS"/>
                             <constraint firstItem="UIa-RV-S1Z" firstAttribute="leading" secondItem="XZP-0P-Gdt" secondAttribute="leading" constant="64" id="y88-N4-dCf"/>
                             <constraint firstItem="Uxr-u5-Be9" firstAttribute="leading" secondItem="XZP-0P-Gdt" secondAttribute="leading" constant="16" id="ydl-Cw-3Hy"/>
@@ -149,16 +149,16 @@
     </scenes>
     <resources>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

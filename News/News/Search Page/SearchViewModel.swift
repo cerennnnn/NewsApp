@@ -18,7 +18,7 @@ final class SearchViewModel {
     var news: [News]?
     
     func loadNews() {
-        NetworkManager.shared.fetchNews(url: URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=a04d4753e1b0457a9da5fe7e632614c1")!) {
+        NetworkManager.shared.fetchNews(url: URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=cb8a8fa75db0409d9d6658979e7ac5d6")!) {
             result in
             switch result {
             case .success(let success):
@@ -31,7 +31,7 @@ final class SearchViewModel {
     }
     
     func loadNews(searchText: String) {
-        NetworkManager.shared.fetchNews(url: URL(string: "https://newsapi.org/v2/everything?q=\(searchText)&from=2023-09-11&sortBy=popularity&apiKey=a04d4753e1b0457a9da5fe7e632614c1")!) { result in
+        NetworkManager.shared.fetchNews(url: URL(string: "https://newsapi.org/v2/everything?q=\(searchText)&from=2023-09-11&sortBy=popularity&apiKey=cb8a8fa75db0409d9d6658979e7ac5d6")!) { result in
             switch result {
             case .success(let success):
                 self.news = success.articles

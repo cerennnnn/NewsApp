@@ -74,8 +74,6 @@ final class DetailViewModel {
         return isSaved
     }
     
-    //true ise changeFavButton(), false ise
-    
     init() {
         
     }

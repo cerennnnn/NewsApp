@@ -22,6 +22,8 @@ class DetailViewController: UIViewController {
     
     let context = appDelegate.persistentContainer.viewContext
     var detailViewModel = DetailViewModel()
+    var safeNewsArr = [SavedNews]()
+    var isSaved = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,14 +56,37 @@ class DetailViewController: UIViewController {
         }
     }
     
-    private func saveFavNews() {
-        detailViewModel.saveNews()
-        changeFavButton()
+    func saveFavNews(){
+        let context = appDelegate.persistentContainer.viewContext
+        let news = SavedNews(context: context)
+        
+        if let safeNews = detailViewModel.news {
+            news.title = safeNews.title
+            news.desc = safeNews.description
+            news.image = safeNews.urlToImage
+            news.id = safeNews.source?.id
+            
+            appDelegate.saveContext()
+            isSaved = true
+            changeFavButton()
+            
+        }
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
-        if detailViewModel.saveButtonTapped() {
-            changeFavButton()
+        if isSaved {
+            do {
+                let id = detailViewModel.news?.source?.id
+                let results = try context.fetch(SavedNews.fetchRequest())
+                if let savedNew = results.first(where: { $0.id == id }) {
+                    context.delete(savedNew)
+                    appDelegate.saveContext()
+                    isSaved = false
+                    changeFavButton()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
         } else {
             saveFavNews()
         }
@@ -73,14 +98,25 @@ class DetailViewController: UIViewController {
         self.present(vc, animated: true)
     }
     
-    private func fetchFavNews() {
-        if detailViewModel.fetchFavNews() {
-            changeFavButton()
+    private func fetchFavNews(){
+        do {
+            let results = try context.fetch(SavedNews.fetchRequest())
+            if let id = detailViewModel.news?.source?.id {
+                isSaved = results.contains { $0.id == id }
+                if isSaved {
+                    changeFavButton()
+                }
+            }
+        } catch {
+            print(error.localizedDescription)
         }
     }
     
-    
-    private func changeFavButton(){
-        detailViewModel.changeFavButton(button: saveButton)
+    func changeFavButton(){
+        if isSaved == true {
+            saveButton.image = UIImage(systemName: "bookmark.fill")
+        } else {
+            saveButton.image = UIImage(systemName: "bookmark")
+        }
     }
 }
