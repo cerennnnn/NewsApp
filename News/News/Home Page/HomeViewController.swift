@@ -31,6 +31,7 @@ class HomeViewController: UIViewController {
     }
     
     func reloadCollectionView() -> () -> () {
+        tabBarController?.tabBar.isHidden = false
         activityIndicator.startAnimating()
         return {
             DispatchQueue.main.async {
