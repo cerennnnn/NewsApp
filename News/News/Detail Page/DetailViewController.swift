@@ -19,8 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailContentLabel: UILabel!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    
-    let context = appDelegate.persistentContainer.viewContext
+
     var detailViewModel = DetailViewModel()
     var isSaved = false
     
@@ -58,36 +57,15 @@ class DetailViewController: UIViewController {
     }
     
     func saveNews(){
-        let context = appDelegate.persistentContainer.viewContext
-        let news = SavedNews(context: context)
-        
-        if let safeNews = detailViewModel.news {
-            news.title = safeNews.title
-            news.desc = safeNews.description
-            news.image = safeNews.urlToImage
-            news.id = safeNews.source?.id
-            
-            appDelegate.saveContext()
-            isSaved = true
-            changeSaveButton()
-            
-        }
+        detailViewModel.saveNews()
+        isSaved = true
+        changeSaveButton()
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         if isSaved {
-            do {
-                let id = detailViewModel.news?.source?.id
-                let results = try context.fetch(SavedNews.fetchRequest())
-                if let savedNew = results.first(where: { $0.id == id }) {
-                    context.delete(savedNew)
-                    appDelegate.saveContext()
-                    isSaved = false
-                    changeSaveButton()
-                }
-            } catch {
-                print(error.localizedDescription)
-            }
+            isSaved = detailViewModel.fetchNews(isSaved: false)
+            detailViewModel.changeSaveButton(button: saveButton, isSaved: isSaved)
         } else {
             saveNews()
         }
@@ -99,9 +77,9 @@ class DetailViewController: UIViewController {
         self.present(vc, animated: true)
     }
     
-    private func fetchSavedNews(){
+    private func fetchSavedNews() {
         do {
-            let results = try context.fetch(SavedNews.fetchRequest())
+            let results = try detailViewModel.context.fetch(SavedNews.fetchRequest())
             if let id = detailViewModel.news?.source?.id {
                 isSaved = results.contains { $0.id == id }
                 if isSaved {
@@ -113,11 +91,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    func changeSaveButton(){
-        if isSaved == true {
-            saveButton.image = UIImage(systemName: "bookmark.fill")
-        } else {
-            saveButton.image = UIImage(systemName: "bookmark")
-        }
+    func changeSaveButton() {
+        detailViewModel.changeSaveButton(button: saveButton, isSaved: isSaved)
     }
 }

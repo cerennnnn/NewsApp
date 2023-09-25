@@ -8,15 +8,15 @@
 import UIKit
 
 final class DetailViewModel {
+    
     let context = appDelegate.persistentContainer.viewContext
     var savedNews: SavedNews?
     var news: News?
     var dbNews: [SavedNews]?
-    var isSaved: Bool = false
     var indexPath: Int?
     var safeNewsArr = [SavedNews]()
     
-    func changeFavButton(button: UIBarButtonItem){
+    func changeSaveButton(button: UIBarButtonItem, isSaved: Bool){
         if isSaved == true {
             button.image = UIImage(systemName: "bookmark.fill")
         } else {
@@ -39,42 +39,20 @@ final class DetailViewModel {
             news.id = safeNews.source?.id
             
             appDelegate.saveContext()
-            isSaved = true
         }
     }
     
-    func fetchFavNews() -> Bool {
+    func fetchNews(isSaved: Bool) -> Bool {
         do {
+            let id = news?.source?.id
             let results = try context.fetch(SavedNews.fetchRequest())
-            if let title = news?.title {
-                isSaved = results.contains { $0.title == title }
+            if let savedNew = results.first(where: { $0.id == id }) {
+                context.delete(savedNew)
+                appDelegate.saveContext()
             }
         } catch {
             print(error.localizedDescription)
         }
-        
         return isSaved
-    }
-    
-    func saveButtonTapped() -> Bool {
-        if isSaved {
-            do {
-                let title = news?.title
-                let results = try context.fetch(SavedNews.fetchRequest())
-                if let savedNew = results.first(where: { $0.title == title }) {
-                    context.delete(savedNew)
-                    appDelegate.saveContext()
-                    isSaved = false
-                }
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        
-        return isSaved
-    }
-    
-    init() {
-        
     }
 }

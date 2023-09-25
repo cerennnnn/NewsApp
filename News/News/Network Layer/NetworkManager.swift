@@ -26,7 +26,6 @@ final class NetworkManager {
                     let decodedData = try JSONDecoder().decode(NewsModel.self, from: data)
                     completion(.success(decodedData))
                 } catch {
-                    // Response model hatasi
                     completion(.failure(NSError(domain: "Decode Error", code: 0)))
                 }
             }.resume()
