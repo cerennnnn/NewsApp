@@ -20,11 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         var storyboard: UIStoryboard!
         
         if window.traitCollection.userInterfaceStyle == .dark {
-            // Dark Mode aktif
-            UserDefaults.standard.set(true, forKey: "DarkModeEnabled") // Dark Mode aktifse true, değilse false
+            UserDefaults.standard.set(true, forKey: "DarkModeEnabled")
         } else {
-            // Light Mode aktif
-            UserDefaults.standard.set(false, forKey: "DarkModeEnabled") // Dark Mode aktifse true, değilse false
+            UserDefaults.standard.set(false, forKey: "DarkModeEnabled")
         }
         
         if UserDefaults.standard.hasOnboarded {
@@ -32,18 +30,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             guard let tabBar = storyboard.instantiateViewController(withIdentifier: "TabBarController") as? TabBarController else { return }
             window.rootViewController = tabBar
-            window.makeKeyAndVisible()
-            self.window = window
         }
         else {
             storyboard = UIStoryboard(name: "OnboardingViewController", bundle: nil)
             if let vc = storyboard.instantiateViewController(withIdentifier: "OnboardingViewController" ) as? OnboardingViewController {
                 window.rootViewController = vc
-                window.makeKeyAndVisible()
-                
-                self.window = window
             }
         }
+        window.makeKeyAndVisible()
+        self.window = window
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
