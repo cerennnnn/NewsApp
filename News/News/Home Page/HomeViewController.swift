@@ -27,7 +27,7 @@ class HomeViewController: UIViewController {
         homeViewModel.loadNews()
         homeViewModel.onSuccess = reloadCollectionView()
         homeViewModel.onError = showError()
-
+        
     }
     
     func reloadCollectionView() -> () -> () {
@@ -88,18 +88,22 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as? HomeCollectionViewCell {
             let selectedItem = homeViewModel.cellForItem(at: indexPath)
             
-            if let selectedImage = selectedItem.urlToImage {
-                cell.homeTitleLabel.text = selectedItem.title
-                cell.homeDescriptionLabel.text = selectedItem.description
-                cell.homeImageView.sd_setImage(with: URL(string: selectedImage), placeholderImage: UIImage(named: "person.fill"))
-                
-                cell.layer.masksToBounds = false
-                cell.layer.shadowColor = UIColor.black.cgColor
-                cell.layer.shadowOpacity = 0.5
-                cell.layer.shadowOffset = CGSize(width: -1, height: 1)
-                cell.layer.shadowRadius = 1
-                cell.layer.shouldRasterize = true
+            
+            cell.homeTitleLabel.text = selectedItem.title
+            cell.homeDescriptionLabel.text = selectedItem.description
+            
+            if selectedItem.urlToImage == nil {
+                cell.homeImageView.sd_setImage(with: URL(string: "https://i.pinimg.com/474x/95/31/7c/95317ca5719667e280e9861b01577934.jpg"))
+            } else {
+                cell.homeImageView.sd_setImage(with: URL(string: selectedItem.urlToImage!))
             }
+            
+            cell.layer.masksToBounds = false
+            cell.layer.shadowColor = UIColor.black.cgColor
+            cell.layer.shadowOpacity = 0.5
+            cell.layer.shadowOffset = CGSize(width: -1, height: 1)
+            cell.layer.shadowRadius = 1
+            cell.layer.shouldRasterize = true
             
             return cell
             

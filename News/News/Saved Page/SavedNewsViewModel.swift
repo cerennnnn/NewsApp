@@ -12,6 +12,7 @@ final class SavedNewsViewModel {
     let context = appDelegate.persistentContainer.viewContext
     var safeNewsArr = [SavedNews]()
     var indexPath: Int?
+    var label = UILabel()
     
     func fetchNews() {
         let request: NSFetchRequest<SavedNews> = SavedNews.fetchRequest()

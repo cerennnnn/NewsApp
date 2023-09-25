@@ -34,7 +34,12 @@ class DetailViewController: UIViewController {
     
     private func getDetails() {
         if let detail = detailViewModel.news {
-            detailImageView.sd_setImage(with: URL(string: detail.urlToImage ?? "person.fill"))
+            
+            if detail.urlToImage == nil {
+                detailImageView.sd_setImage(with: URL(string: "https://i.pinimg.com/474x/95/31/7c/95317ca5719667e280e9861b01577934.jpg"))
+            } else {
+                detailImageView.sd_setImage(with: URL(string: detail.urlToImage!))
+            }
             detailTitleLabel.text = detail.title
             detailPublishLabel.text = detail.publishedAt
             detailAuthorLabel.text = (detail.author)

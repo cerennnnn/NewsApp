@@ -65,7 +65,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             if let selectedItem = searchViewModel.cellForRow(at: indexPath) {
                 cell.searchTableViewTitleLabel.text = selectedItem.title
                 cell.searchTableViewDescriptionLabel.text = selectedItem.description
-                cell.searchTableViewImageView.sd_setImage(with: URL(string: (selectedItem.urlToImage ?? "person.fill")))
+                
+                if selectedItem.urlToImage == nil {
+                    cell.searchTableViewImageView.sd_setImage(with: URL(string: "https://i.pinimg.com/474x/95/31/7c/95317ca5719667e280e9861b01577934.jpg"))
+                } else {
+                    cell.searchTableViewImageView.sd_setImage(with: URL(string: selectedItem.urlToImage!))
+                }
             }
             return cell
         }
